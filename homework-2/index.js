@@ -46,9 +46,9 @@ const addLogToFile = (processInfo) => {
   );
 };
 
-if (process.platform === 'darwin' || process.platform === 'linux') {
+if (os.platform() === 'darwin' || os.platform() === 'linux') {
   cmd = cmdUnixLikeOS ;
-} else if (process.platform === 'win32') {
+} else if (os.platform() === 'win32') {
   cmd = cmdWindows;
 }
 
