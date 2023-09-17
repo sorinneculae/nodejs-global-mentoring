@@ -4,7 +4,8 @@
   "description": "Node JS Global Mentoring Program 2023",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "homework3-task3": "nodemon homework-3/task3.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,12 @@
     "url": "https://github.com/sorinneculae/nodejs-global-mentoring/issues"
   },
   "homepage": "https://github.com/sorinneculae/nodejs-global-mentoring#readme",
+  "type": "module",
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "node-fetch": "^3.3.2"
   }
 }
