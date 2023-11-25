@@ -1,4 +1,5 @@
 import * as helpers from "./helpers";
+import { mockPublicHoliday, mockPublicHolidayShort } from "./mocks/mockPublicHoliday";
 import { PublicHoliday, PublicHolidayShort } from "./types";
 
 describe("Validate country", () => {
@@ -16,7 +17,9 @@ describe("Validate country", () => {
       new Error(`Country provided is not supported, received: ${country}`)
     );
   });
+});
 
+describe("Validate year", () => {
   test("should throw error if year is NOT the current year", () => {
     const country = "FR";
     const year = 2021;
@@ -27,23 +30,6 @@ describe("Validate country", () => {
 });
 
 describe("shortenPublicHoliday()", () => {
-  const mockPublicHoliday: PublicHoliday = {
-    date: 'date',
-    localName: 'localName',
-    name: 'name',
-    countryCode: 'countryCode', 
-    fixed: true,
-    global: false,
-    counties: null,
-    launchYear: null,
-    types: ['type1', 'type2']
-  }
-  const mockPublicHolidayShort: PublicHolidayShort = {
-    name: 'name',
-    localName: 'localName',
-    date: 'date',
-  }
-
   test("should return a short version of Public Holiday", () => {
     const result = helpers.shortenPublicHoliday(mockPublicHoliday);
     expect(result).toStrictEqual(mockPublicHolidayShort);
