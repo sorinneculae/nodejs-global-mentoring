@@ -67,6 +67,15 @@ describe("checkIfTodayIsPublicHoliday", () => {
     const response = await publicHolidaysService.checkIfTodayIsPublicHoliday(country);
     expect(response).toEqual(false);
   });
+
+  test("should return false if the API call is not successful", async () => {
+    const country = "FR";
+
+    jest.spyOn(axios, "get").mockImplementation(() => Promise.reject(new Error('error')));
+
+    const response = await publicHolidaysService.checkIfTodayIsPublicHoliday(country);
+    expect(response).toEqual(false);
+  });
 });
 
 describe("getNextPublicHolidays", () => {
@@ -87,6 +96,15 @@ describe("getNextPublicHolidays", () => {
     await expect(publicHolidaysService.getNextPublicHolidays(country)).rejects.toThrow(
       new Error(`Country provided is not supported, received: ${country}`)
     );
+  });
+
+  test("should return empty array if the API call is not successful", async () => {
+    const country = "FR";
+
+    jest.spyOn(axios, "get").mockImplementation(() => Promise.reject(new Error('error')));
+
+    const response = await publicHolidaysService.getNextPublicHolidays(country);
+    expect(response).toEqual([]);
   });
 });
 
