@@ -9,9 +9,16 @@ import {
   getUserDataWithoutHobbies,
 } from "./controllers/userController";
 
-import { users } from './mocks/users';
 import { addHobby, deleteHobby, getUserHobbies } from "./controllers/hobbyController";
 import { writeResponse } from "./util";
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
+const express = require('express')
+
+const app = express()
+const swaggerDocument = YAML.load("./swagger.yaml");
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const server = http.createServer((req: any, res) => {
   const parsedUrl: any = url.parse(req.url, true);
@@ -83,6 +90,6 @@ const server = http.createServer((req: any, res) => {
 });
 
 const PORT = 3000;
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/`);
-});
+})
