@@ -1,4 +1,4 @@
-import { findUser, writeResponse } from '../util';
+import { errorResponse, findUser, writeResponse } from '../util';
 import { users } from '../mocks/users';
 import { IncomingMessage, ServerResponse } from 'http';
 import { User } from '../types';
@@ -9,7 +9,7 @@ export function getUserById(req: IncomingMessage, res: ServerResponse, userId: n
   if (user) {
     writeResponse(res, 200, user);
   } else {
-    writeResponse(res, 404, { error: "User not found" });
+    errorResponse(res);
   }
 }
 
@@ -32,7 +32,7 @@ export function getUserDataWithoutHobbies(req: IncomingMessage, res: ServerRespo
     };
     writeResponse(res, 200, userDataWithoutHobbies);
   } else {
-    writeResponse(res, 404, { error: "User not found" });
+    errorResponse(res);
   }
 }
 
@@ -50,7 +50,7 @@ export function updateUser(req: IncomingMessage, res: ServerResponse, userId: nu
     user = { ...user, ...updatedUser };
     writeResponse(res, 200, user);
   } else {
-    writeResponse(res, 404, { error: "User not found" });
+    errorResponse(res);
   }
 }
 
@@ -61,6 +61,6 @@ export function deleteUser(req: IncomingMessage, res: ServerResponse, userId: nu
       users.splice(userIndex, 1);
       writeResponse(res, 200, user);
     } else {
-      writeResponse(res, 404, { error: "User not found" });
+      errorResponse(res);
     }
 }

@@ -8,3 +8,5 @@ export const writeResponse = (res: any, code: number, message: any) => {
 export const findUser = (userId: number) => {
   return users.find((u) => u.id === userId);
 }
+
+export const errorResponse = (res: any) => writeResponse(res, 404, { error: "User not found" });
