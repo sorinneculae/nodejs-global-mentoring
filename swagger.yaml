@@ -379,7 +379,8 @@ paths:
           description: Id (uuid) of product to return
           required: true
           schema:
-            type: number
+            type: string
+            format: uuid
         - in: header
           name: x-user-id
           schema:
